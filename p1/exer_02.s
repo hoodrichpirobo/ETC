@@ -32,6 +32,10 @@ __start: la $t0, A                 # Load the address of variable A (0x10000000)
          add $s2, $s2, $s2         # Double the value in $s2 by adding it to itself
                                    # $s2 now contains the value (2 * 55) = 110, which is the perimeter of the rectangle
 
-         sw $s2, 0($t2)            # Store the value in $s2 (the perimeter) into memory at the address stored in $t2 (P)
-                                   # The memory location P (0x10000008) will now contain the value 110
+         sw $s2, 2($t2)            # Store the value in $s2 (the perimeter) into memory at the address stored in 2($t2) (P)
+                                   # The memory location P (0x1000000c) will now contain the value 110
                                    # This is a store word instruction that writes the perimeter to memory
+         
+         move $a0, $s2             # copies perimeter to $a0
+         li $v0, 1                 # code for print_int
+         syscall                   # system call
